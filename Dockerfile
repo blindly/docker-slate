@@ -18,11 +18,13 @@ RUN /bin/bash -l -c "gem update --system && gem install bundler --no-ri --no-rdo
 
 ENV DEBIAN_FRONTEND dialog
 
-WORKDIR /tmp
+WORKDIR /app
 RUN git clone https://github.com/tripit/slate.git
+
+WORKDIR /app/slate
 RUN /bin/bash -l -c "bundle install"
 
-WORKDIR /app
+#WORKDIR /app
 
 CMD /bin/bash -l -c "bundle exec middleman server"
 EXPOSE 4567
